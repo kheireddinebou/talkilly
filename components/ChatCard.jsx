@@ -30,9 +30,9 @@ const ChatCard = ({ navigation, chat }) => {
     }
   }, [chat]);
 
-
   return (
     <TouchableHighlight
+      style={{ marginTop: 20 }}
       onPress={() => navigation.navigate("Chat", { user: chat.userInfo })}
     >
       <View style={styles.userInfo}>
@@ -79,7 +79,6 @@ const styles = StyleSheet.create({
     padding: 20,
     flexDirection: "row",
     alignItems: "center",
-    marginTop: 20,
     borderRadius: 20,
     position: "relative",
   },

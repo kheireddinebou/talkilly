@@ -63,13 +63,14 @@ const ChatsList = ({ navigation }) => {
 
     currentUser.uid && getData();
   }, [currentUser.uid]);
+  
 
   return (
     <View style={styles.container}>
       <View style={styles.inputWrapper}>
         <Icon name="search" size={35} color={colors.textSecondary} />
         <TextInput
-          onChangeText={text => handleSearch(text)}
+          onChangeText={text => handleSearch(text.toLowerCase())}
           placeholder="Search message..."
           style={styles.input}
         />

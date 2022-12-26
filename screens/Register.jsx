@@ -4,8 +4,9 @@ import {
   TextInput,
   TouchableOpacity,
   View,
+  Keyboard,
 } from "react-native";
-import React, { useContext, useState } from "react";
+import React, { useContext, useState, useEffect } from "react";
 import { colors } from "../globalStyles";
 import { createUserWithEmailAndPassword, updateProfile } from "firebase/auth";
 import { auth, db } from "../firebase";
@@ -20,9 +21,8 @@ import { AuthContext } from "../context/AuthContext";
 const Register = ({ navigation }) => {
   const [formData, setFormData] = useState({});
   const [err, setErr] = useState({});
-  const [loading, setLoading] = useState();
-
-  const { currentUser } = useContext(AuthContext);
+  const [loading, setLoading] = useState(false);
+  const [isKeyboardVisible, setKeyboardVisible] = useState(false);
 
   const handleChange = (name, value) => {
     setFormData({ ...formData, [name]: value });
@@ -74,7 +74,6 @@ const Register = ({ navigation }) => {
                 email: formData.email,
                 photoURL:
                   "https://firebasestorage.googleapis.com/v0/b/chat-mob-f8088.appspot.com/o/blank-profile-picture-g003eec065_1280.png?alt=media&token=4d852bc1-a733-48ce-8851-ead7ee107f83",
-                status: "active",
               });
 
               await setDoc(doc(db, "userChats", user.uid), {});
@@ -92,6 +91,27 @@ const Register = ({ navigation }) => {
       }
     }
   };
+
+  useEffect(() => {
+    const keyboardDidShowListener = Keyboard.addListener(
+      "keyboardDidShow",
+      () => {
+        setKeyboardVisible(true);
+      }
+    );
+    const keyboardDidHideListener = Keyboard.addListener(
+      "keyboardDidHide",
+      () => {
+        setKeyboardVisible(false);
+      }
+    );
+
+    return () => {
+      keyboardDidHideListener.remove();
+      keyboardDidShowListener.remove();
+    };
+  }, []);
+
   return (
     <View style={styles.container}>
       <Text style={styles.title}>Create Account</Text>
@@ -146,7 +166,7 @@ const Register = ({ navigation }) => {
         <Text style={styles.btnText}>Sign Up</Text>
       </TouchableOpacity>
 
-      {!loading && (
+      {!loading && !isKeyboardVisible && (
         <Text style={styles.bottomText}>
           Already have an account ?{" "}
           <Text
@@ -221,7 +241,10 @@ const styles = StyleSheet.create({
   },
 
   bottomText: {
-    marginTop: 140,
+    position: "absolute",
+    bottom: 50,
+    width: "100%",
+    alignSelf: "center",
     color: colors.textSecondary,
     fontSize: 16,
     textAlign: "center",

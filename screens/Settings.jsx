@@ -123,7 +123,10 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     borderRadius: 15,
     padding: 15,
-    marginTop: 200,
+    position: "absolute",
+    bottom: 20,
+    width: "100%",
+    alignSelf: "center",
   },
 
   btnText: {

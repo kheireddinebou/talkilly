@@ -4,9 +4,9 @@ import {
   TextInput,
   TouchableOpacity,
   View,
-  Image,
+  Keyboard,
 } from "react-native";
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { colors } from "../globalStyles";
 import { signInWithEmailAndPassword } from "firebase/auth";
 import { auth } from "../firebase";
@@ -16,9 +16,9 @@ import { AuthContext } from "../context/AuthContext";
 const Login = ({ navigation }) => {
   const [formData, setFormData] = useState({});
   const [err, setErr] = useState({});
-  const [loading, setLoading] = useState();
+  const [loading, setLoading] = useState(false);
+  const [isKeyboardVisible, setKeyboardVisible] = useState(false);
 
-  const { currentUser } = useContext(AuthContext);
 
   const handleChange = (name, value) => {
     setFormData({ ...formData, [name]: value });
@@ -63,6 +63,26 @@ const Login = ({ navigation }) => {
     }
   };
 
+  useEffect(() => {
+    const keyboardDidShowListener = Keyboard.addListener(
+      "keyboardDidShow",
+      () => {
+        setKeyboardVisible(true);
+      }
+    );
+    const keyboardDidHideListener = Keyboard.addListener(
+      "keyboardDidHide",
+      () => {
+        setKeyboardVisible(false);
+      }
+    );
+
+    return () => {
+      keyboardDidHideListener.remove();
+      keyboardDidShowListener.remove();
+    };
+  }, []);
+
   return (
     <View style={styles.container}>
       <Text style={styles.title}>Welcome Back!</Text>
@@ -102,7 +122,7 @@ const Login = ({ navigation }) => {
         <Text style={styles.btnText}>Login</Text>
       </TouchableOpacity>
 
-      {!loading && (
+      {!loading && !isKeyboardVisible && (
         <Text style={styles.bottomText}>
           Don't have an account ?{" "}
           <Text
@@ -123,6 +143,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     padding: 16,
+    position: "relative",
   },
 
   title: {
@@ -177,7 +198,10 @@ const styles = StyleSheet.create({
   },
 
   bottomText: {
-    marginTop: 70,
+    position: "absolute",
+    bottom: 50,
+    width: "100%",
+    alignSelf: "center",
     color: colors.textSecondary,
     fontSize: 16,
     textAlign: "center",

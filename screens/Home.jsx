@@ -31,9 +31,6 @@ const Home = ({ navigation }) => {
   const handleSearch = async text => {
     // check if the search text is empty
     if (text.trim().lenght === 0) return;
-    setSearchUsers([]);
-
-    const serachUsersName = [currentUser.displayName];
 
     const q = query(
       collection(db, "users"),
@@ -101,8 +98,17 @@ const Home = ({ navigation }) => {
           style={styles.userImg}
         />
         <View>
-          <Text style={styles.username}>{currentUser.displayName}</Text>
-          <Text style={styles.useremail}>{currentUser.email}</Text>
+          <Text style={styles.username}>
+            {currentUser.displayName.length > 22
+              ? currentUser.displayName.slice(0, 20) + "..."
+              : currentUser.displayName}
+          </Text>
+          <Text style={styles.useremail}>
+            {" "}
+            {currentUser.email.length > 24
+              ? currentUser.email.slice(0, 22) + "..."
+              : currentUser.email}
+          </Text>
         </View>
       </View>
 
@@ -111,7 +117,7 @@ const Home = ({ navigation }) => {
       <View style={styles.inputWrapper}>
         <Icon name="search" size={33} color={colors.textSecondary} />
         <TextInput
-          onChangeText={text => handleSearch(text)}
+          onChangeText={text => handleSearch(text.toLowerCase())}
           style={styles.input}
           placeholder="Tap here..."
         />
@@ -152,7 +158,7 @@ const styles = StyleSheet.create({
     width: 95,
     height: 95,
     borderRadius: 50,
-    marginRight: 20,
+    marginRight: 10,
   },
 
   username: {
