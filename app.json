@@ -3,9 +3,13 @@
     "name": "talkilly",
     "slug": "talkilly",
     "version": "1.0.0",
-    "assetBundlePatterns": [
-      "**/*"
-    ]
+    "description": "talkilly app allows you to communicate with your friends, family... in  chat rooms, talkilly make it easier, simpler, and faster to connect with everyone and it is also easy to use",
+    "splash": {
+      "image": "./assets/images/talkilly-splash.png",
+      "resizeMode": "contain",
+      "backgroundColor": "#fff"
+    },
+    "assetBundlePatterns": ["**/*"]
   },
   "name": "talkilly"
 }
