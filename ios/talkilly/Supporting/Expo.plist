@@ -2,10 +2,8 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
   <dict>
-    <key>EXUpdatesSDKVersion</key>
-    <string>47.0.0</string>
     <key>EXUpdatesURL</key>
-    <string>https://exp.host/@kheiereddin/talkilly</string>
+    <string>https://u.expo.dev/02e35b5d-7309-4f1b-aa95-a55e471c5bbd</string>
     <key>EXUpdatesEnabled</key>
     <true/>
     <key>EXUpdatesCheckOnLaunch</key>
@@ -14,5 +12,7 @@
     <integer>0</integer>
     <key>EXUpdatesReleaseChannel</key>
     <string>default</string>
+    <key>EXUpdatesRuntimeVersion</key>
+    <string>1.0.0</string>
   </dict>
 </plist>

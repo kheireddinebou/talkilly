@@ -18,7 +18,13 @@
         "projectId": "02e35b5d-7309-4f1b-aa95-a55e471c5bbd"
       }
     },
-    "owner": "kheireddinebou"
+    "owner": "kheireddinebou",
+    "runtimeVersion": "1.0.0",
+    "updates": {
+      "url": "https://u.expo.dev/02e35b5d-7309-4f1b-aa95-a55e471c5bbd"
+    },
+    "android": {},
+    "ios": {}
   },
   "name": "talkilly"
 }
