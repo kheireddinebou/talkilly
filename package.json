@@ -17,6 +17,7 @@
     "expo-image-picker": "~14.0.2",
     "expo-splash-screen": "~0.17.5",
     "expo-status-bar": "~1.4.2",
+    "expo-updates": "~0.15.6",
     "firebase": "^9.15.0",
     "react": "18.1.0",
     "react-native": "0.70.5",
@@ -27,8 +28,7 @@
     "react-native-screens": "^3.18.2",
     "react-native-vector-icons": "^9.2.0",
     "react-navigation-tabs": "^2.11.2",
-    "timeago.js": "^4.0.0-beta.3",
-    "expo-updates": "~0.15.6"
+    "timeago.js": "^4.0.0-beta.3"
   },
   "devDependencies": {
     "@babel/core": "^7.12.9",
