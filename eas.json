@@ -6,17 +6,14 @@
     "development": {
       "developmentClient": true,
       "distribution": "internal",
-      "channel": "development",
-      "image": "latest"
+      "channel": "development"
     },
     "preview": {
       "distribution": "internal",
-      "channel": "preview",
-      "image": "latest"
+      "channel": "preview"
     },
     "production": {
-      "channel": "production",
-      "image": "latest"
+      "channel": "production"
     }
   },
   "submit": {
