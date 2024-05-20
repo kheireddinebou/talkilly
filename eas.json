@@ -13,8 +13,7 @@
       "channel": "preview"
     },
     "production": {
-      "channel": "production",
-      "image": "auto"
+      "channel": "production"
     }
   },
   "submit": {
